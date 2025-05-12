@@ -1,7 +1,7 @@
 <template>
 <div class="w-[255px] h-[166px] my-4 ml-4 flex-col gap-6 inline-flex">
   <div class="w-44 h-[34px] relative">
-    <img class="w-[237px] h-[42px] left-0 top-[-3.50px] absolute" src="/assets/img/LogoLargo.png" />
+    <img :src="logoUrl" alt="Logo" class="w-[237px] h-[42px] left-0 top-[-3.5px] absolute"/>
     
   </div>
   <div class="w-64 mt-4">
@@ -18,6 +18,7 @@
 
 <script setup>
 import SocialLinks from '@/Components/SocialLinks.vue';
+const logoUrl = '/assets/img/LogoLargo.png'; // apunta a public/assets/img
 </script>
 
 <style>

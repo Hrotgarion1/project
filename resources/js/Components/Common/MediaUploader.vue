@@ -187,7 +187,7 @@
 import { ref, watch, computed } from 'vue';
 import draggable from 'vuedraggable';
 import VueEasyLightbox from 'vue-easy-lightbox';
-import { useToast } from 'vue-toastification';
+import { toast } from 'vue3-toastify';
 import { useMediaStore } from '@/stores/media';
 import { getCurrentInstance } from 'vue';
 
@@ -195,7 +195,6 @@ const instance = getCurrentInstance();
 const $t = instance?.proxy.$t;
 
 const mediaStore = useMediaStore();
-const toast = useToast();
 
 const props = defineProps({
   identityId: [String, Number],

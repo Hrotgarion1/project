@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { router } from '@inertiajs/vue3';
-import { useToast } from 'vue-toastification';
+import { toast } from 'vue3-toastify';
 import axios from 'axios';
 
 export const useAreaDefinicionStore = defineStore('areaDefinicion', {

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import { useToast } from 'vue-toastification';
+import { toast } from 'vue3-toastify';
 
 export const useInvitationStore = defineStore('invitation', {
     state: () => ({

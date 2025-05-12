@@ -4,7 +4,7 @@ import { useBelongingStore } from '@/stores/belonging';
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import { debounce } from 'lodash';
-import { useToast } from 'vue-toastification';
+import { toast } from 'vue3-toastify';
 
 const props = defineProps({
     modelValue: [String, Object],
@@ -20,7 +20,6 @@ const emit = defineEmits(['update:modelValue', 'update:countryId']);
 
 const instance = getCurrentInstance();
 const $t = instance?.proxy.$t;
-const toast = useToast();
 const belongingStore = useBelongingStore();
 const selectedCountry = ref(props.countryId ? String(props.countryId) : '');
 const selected = ref(props.modelValue);

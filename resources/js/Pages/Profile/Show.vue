@@ -6,6 +6,7 @@ import SectionBorder from '@/Components/SectionBorder.vue';
 import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue';
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue';
+import MyTeams from '@/Pages/Profile/Partials/MyTeams.vue';
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -14,10 +15,10 @@ defineProps({
 </script>
 
 <template>
-    <AppLayout title="Profile">
+    <AppLayout :title="$t('Profile')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Profile
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{$t('Profile')}}
             </h2>
         </template>
 
@@ -28,6 +29,9 @@ defineProps({
 
                     <SectionBorder />
                 </div>
+                <MyTeams />
+
+                <SectionBorder />
 
                 <div v-if="$page.props.jetstream.canUpdatePassword">
                     <UpdatePasswordForm class="mt-10 sm:mt-0" />
