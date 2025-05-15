@@ -1,18 +1,10 @@
 <template>
   <div>
-    <img :src="imageUrl" alt="LogoLargo">
+    <img :src="LogoLargo" alt="LogoLargo" />
   </div>
 </template>
 
-<script>
-export default {
-  name: "NombreApp",
-  data() {
-    return {
-      imageUrl: "/assets/img/LogoLargo.png"
-    };
-  },
-  
-};
+<script setup>
+import LogoLargo from '@/assets/img/LogoLargo.png';
 </script>
 

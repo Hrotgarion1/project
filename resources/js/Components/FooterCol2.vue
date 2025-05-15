@@ -3,16 +3,16 @@
   <div class="w-64 text-gray-500 text-xl font-normal font-['Arial'] dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$t('General')}}</div>
   <div class="flex-col justify-start items-start gap-3 flex">
     <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-      <Link >{{$t('Help Center')}}</Link></div>
+      <Link :href="route('landing.help-center')">{{$t('Help Center')}}</Link></div>
     <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-      <Link >{{$t('Blog')}}</Link></div>
+      <Link :href="route('landing.blog')">{{$t('Blog')}}</Link></div>
     <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-      <Link >{{$t('Countries')}}</Link></div>
+      <Link :href="route('landing.countries')">{{$t('Countries')}}</Link></div>
     <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-      <Link >{{$t('Press')}}</Link></div>
+      <Link :href="route('landing.press')">{{$t('Press')}}</Link></div>
     <div class="justify-start items-start gap-2 inline-flex">
       <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-        <Link >{{$t('Jobs')}}</Link></div>
+        <Link :href="route('landing.work-with-us')">{{$t('Jobs')}}</Link></div>
       <!-- <div class="text-red-600 text-sm font-normal font-['Nanum Pen']"> {{$t('!We are hiring!')}}</div> -->
     </div>
   </div>

@@ -1,7 +1,7 @@
 <template>
-    <img :src="logoUrlIA" alt="LogoIA" />
+    <img :src="LogoIAInicornio" alt="LogoIAUnicornio" />
 </template>
 
 <script setup>
-const logoUrlIA = '/assets/img/IAUnicornio.png'; // apunta a public/assets/img
+import LogoIAInicornio from '@/assets/img/IAUnicornio.png';
 </script>

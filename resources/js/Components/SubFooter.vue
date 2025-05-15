@@ -20,19 +20,19 @@
       
       <div class="ml-4 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
         <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-          <Link >{{$t('Terms of Service')}}</Link>
+          <Link :href="route('terms.show')">{{$t('Terms of Service')}}</Link>
         </div>
         
         <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-          <Link >{{$t('Privacy Policy')}}</Link>
+          <Link :href="route('policy.show')">{{$t('Privacy Policy')}}</Link>
         </div>
         
         <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-          <Link >{{$t('Platform rules')}}</Link>  
+          <Link :href="route('rules.show')">{{$t('Platform rules')}}</Link>  
         </div>
         
         <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-          <Link >{{$t('About')}}</Link>
+          <Link :href="route('landing.about')">{{$t('About')}}</Link>
         </div>
       </div>
 

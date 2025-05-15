@@ -1,3 +1,7 @@
 <template>
-    <img src="/assets/img/LogoLargo.png" alt="LogoLargo" class="w-full h-auto">
+    <img :src="LogoLargo" alt="LogoLargo" />
 </template>
+
+<script setup>
+import LogoLargo from '@/assets/img/LogoLargo.png';
+</script>

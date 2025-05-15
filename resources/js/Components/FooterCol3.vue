@@ -3,17 +3,17 @@
   <div class="w-64 text-gray-500 text-xl font-medium font-['Inter'] dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$t('Services')}}</div>
   <div class="flex-col justify-start items-start gap-3 flex">
     <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-      <Link >{{$t('Jobs')}}</Link></div>
+      <Link :href="route('landing.jobs')">{{$t('Jobs')}}</Link></div>
     <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-      <Link >{{$t('Marketing')}}</Link></div>
+      <Link :href="route('landing.marketing')">{{$t('Marketing')}}</Link></div>
     <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-      <Link >{{$t('Products')}}</Link></div>
+      <Link :href="route('landing.products')">{{$t('Products')}}</Link></div>
     <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-      <Link >{{$t('Services')}}</Link></div>
+      <Link :href="route('landing.services')">{{$t('Services')}}</Link></div>
     <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-      <Link >{{$t('Entrepreneurship')}}</Link></div>
+      <Link :href="route('landing.entrepreneurship')">{{$t('Entrepreneurship')}}</Link></div>
     <div class="w-56 base-text base-link focus:outline focus:rounded-sm base-focus">
-      <Link >{{$t('Investments')}}</Link></div>
+      <Link :href="route('landing.investments')">{{$t('Investments')}}</Link></div>
   </div>
 </div>
 </template>

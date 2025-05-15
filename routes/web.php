@@ -27,6 +27,8 @@ include __DIR__.'/admin.php';
 include __DIR__.'/guest.php';
 include __DIR__.'/teams.php';
 include __DIR__.'/editor.php';
+include __DIR__.'/dashboard.php';
+include __DIR__.'/landing.php';
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

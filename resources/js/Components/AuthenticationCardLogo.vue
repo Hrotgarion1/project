@@ -1,10 +1,10 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
-const logoUrl = '/assets/img/LogoLargo.png'; // apunta a public/assets/img
+import LogoLargo from '@/assets/img/LogoLargo.png';
 </script>
 
 <template>
     <Link :href="'/'">
-        <img :src="logoUrl" alt="Logo" />
+        <img :src="LogoLargo" alt="LogoLargo" />
     </Link>
 </template>

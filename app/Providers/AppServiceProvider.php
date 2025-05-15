@@ -11,6 +11,7 @@ use App\Models\Identity;
 use App\Observers\IdentityObserver;
 use App\Models\AreaRecord;
 use App\Observers\AreaRecordObserver;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,5 +41,11 @@ class AppServiceProvider extends ServiceProvider
     // Registrar observers
     Identity::observe(IdentityObserver::class);
     AreaRecord::observe(AreaRecordObserver::class);
+
+    Route::aliasMiddleware('role', \Spatie\Permission\Middleware\RoleMiddleware::class);
+        Route::aliasMiddleware('role_or_permission', \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class);
+        Route::aliasMiddleware('check.permission', \App\Http\Middleware\CheckPermission::class);
+        Route::aliasMiddleware('guest.role', \App\Http\Middleware\EnsureGuestRole::class);
+        Route::aliasMiddleware('redirect.identity.id', \App\Http\Middleware\RedirectIdentityIdToSlug::class);
 }
 }

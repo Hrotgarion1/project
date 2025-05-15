@@ -19,24 +19,24 @@ import DropdownLink from '@/Components/DropdownLink.vue';
             </template>
 
             <template #content>
-                <DropdownLink :href="route('#')">
-                    {{$t('Type 1')}}
+                <DropdownLink :href="route('landing.onlinecourses')">
+                    {{$t('Online courses')}}
                 </DropdownLink>
                 <div class="border-t border-gray-200 dark:border-gray-600" /> 
-                <DropdownLink :href="route('#')">
-                    {{$t('Type 2')}}
+                <DropdownLink :href="route('landing.selfemployed')">
+                    {{$t('Self-employed')}}
                 </DropdownLink> 
                 <div class="border-t border-gray-200 dark:border-gray-600" />
-                <DropdownLink :href="route('#')">
-                    {{$t('Type 3')}}
+                <DropdownLink :href="route('landing.entrepreneurs')">
+                    {{$t('Entrepreneurs')}}
                 </DropdownLink> 
                 <div class="border-t border-gray-200 dark:border-gray-600" />
-                <DropdownLink :href="route('#')">
-                    {{$t('Type 4')}}
+                <DropdownLink :href="route('landing.investors')">
+                    {{$t('Investors')}}
                 </DropdownLink>   
                 <div class="border-t border-gray-200 dark:border-gray-600" />
-                <DropdownLink :href="route('#')">
-                    {{$t('Type 5')}}
+                <DropdownLink :href="route('landing.recruiters')">
+                    {{$t('Recruiters')}}
                 </DropdownLink> 
                     
             </template>

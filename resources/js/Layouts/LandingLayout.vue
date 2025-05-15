@@ -54,7 +54,22 @@ const auth = ref(null)
                         
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            
+                                <NavLink :href="route('landing.students')" :active="route().current('landing.students')">
+                                    {{$t('Students')}}
+                                </NavLink>
+                                <NavLink :href="route('landing.employees')" :active="route().current('landing.employees')">
+                                    {{$t('Employee')}}
+                                </NavLink>
+                                <NavLink :href="route('landing.studycenters')" :active="route().current('landing.studycenters')">
+                                    {{$t('Study centers')}}
+                                </NavLink>
+                                <NavLink :href="route('landing.companies')" :active="route().current('landing.companies')">
+                                    {{$t('Companies')}}
+                                </NavLink>
+                                <NavLink :href="route('landing.socialentities')" :active="route().current('landing.socialentities')">
+                                    {{$t('Social Entities')}}
+                                </NavLink>
+                                <DropdownMoreOptions class="mt-4" />
                                 
                             </div>
                         </div>
@@ -147,7 +162,21 @@ const auth = ref(null)
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        
+                        <ResponsiveNavLink :href="route('landing.students')" :active="route().current('landing.students')">
+                            {{$t('Students')}}
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('landing.employees')" :active="route().current('landing.employees')">
+                            {{$t('Employee')}}
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('landing.studycenters')" :active="route().current('landing.studycenters')">
+                            {{$t('Study centers')}}
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('landing.companies')" :active="route().current('landing.companies')">
+                            {{$t('Companies')}}
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('landing.socialentities')" :active="route().current('landing.socialentities')">
+                            {{$t('Social Entities')}}
+                        </ResponsiveNavLink>
                         <div class="border-t border-gray-200 dark:border-gray-600" />
                         <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{$t('Start here!')}}
@@ -160,14 +189,14 @@ const auth = ref(null)
                                 {{$t('Share')}}
                         </div>
                         <div class="block px-4 py-2 text-gray-400">
-                          
+                            <SocialLinks class="ml-2"/>
                         </div>
                         <div class="border-t border-gray-200 dark:border-gray-600" />
                         <div class="flex justify-between px-4 py-2 text-xs text-gray-400">
                             <div class="mt-2">
                                 {{$t('Switch to light or dark mode')}}
                             </div>
-                            
+                            <DarkMode @toggleDarkMode="handleToggleDarkMode" />
                         </div>
                         <div class="border-t border-gray-200 dark:border-gray-600" />
                         <div class="flex justify-between px-4 py-2 text-xs text-gray-400">
@@ -181,7 +210,7 @@ const auth = ref(null)
                             <div class="mt-2">
                                 {{$t('More options')}}
                             </div> 
-                          
+                            <DropdownMoreOptions /> 
                         </div>                        
                     </div>
 
