@@ -9,6 +9,7 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import DarkMode from '@/Components/DarkMode.vue';
 import SocialLinks from '@/Components/SocialLinks.vue';
+import DropdownUserChange from '@/Components/DropdownUserChange.vue';
 import LanguageSelector from '@/Components/LanguageSelector.vue';
 import Sidebar from '@/Components/Common/Sidebar.vue';
 
@@ -107,7 +108,7 @@ const updateShowingSidebar = (value) => {
                                 >
                                     {{ $t('Dashboard') }}
                                 </NavLink>
-                           
+                                <DropdownUserChange class="mt-4" />
                             </div>
                             <div
                                 v-if="
@@ -364,7 +365,7 @@ const updateShowingSidebar = (value) => {
                                 <div class="mt-2">
                                     {{ $t('More options') }}
                                 </div>
-                                
+                                <DropdownUserChange />
                             </div>
                             <div
                                 class="border-t border-neutral-4 dark:border-neutral-2"

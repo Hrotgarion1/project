@@ -60,8 +60,7 @@ Route::middleware(['auth', 'role:admin|editor'])->group(function () {
 */
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     // Recursos CRUD generales
-    Route::resource('/paises', PaisController::class)
-        ->names('paises'); // Gestión de países
+    //Route::resource('/paises', PaisController::class)->names('paises'); // Gestión de países
 
     Route::resource('/categories', CategoryController::class)
         ->names('categories'); // Gestión de categorías

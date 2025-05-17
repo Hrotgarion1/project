@@ -138,10 +138,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     |-----------------------
     */
 
-    Route::get('/password/reset/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
-    Route::post('/password/reset', [PasswordResetController::class, 'reset'])->name('password.update');
-    Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
-    Route::middleware(['auth', 'role:admin'])->post('/users/{email}/regenerate-password-link', [UserController::class, 'regeneratePasswordLink'])->name('users.regenerate-password-link');
+    // Usar nombres únicos para las rutas personalizadas
+Route::get('/admin/password/reset/{token}', [PasswordResetController::class, 'showResetForm'])->name('admin.password.reset');
+Route::post('/admin/password/reset', [PasswordResetController::class, 'reset'])->name('admin.password.update');
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email'); // Esta puede quedarse si es necesaria
+Route::middleware(['auth', 'role:admin'])->post('/users/{email}/regenerate-password-link', [UserController::class, 'regeneratePasswordLink'])->name('users.regenerate-password-link');
 
     /*
     |-----------------------

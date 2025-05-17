@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('belonging_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('pais_id')->constrained('paises')->onDelete('restrict');
             $table->morphs('recordable'); // Añade recordable_id y recordable_type
-            $table->enum('status', ['1', '2'])->default('1');
+            $table->integer('status')->nullable(false)->default(1);
             $table->bigInteger('value')->nullable()->default(0);
             $table->bigInteger('puntuacion_1')->nullable()->default(0);
             $table->bigInteger('puntuacion_2')->nullable()->default(0);

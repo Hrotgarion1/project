@@ -128,8 +128,8 @@ const formatEndDate = (endDate, currently) => {
 
 const formatStatus = (status) => {
     const statuses = {
-        '1': { label: $t('proposed'), class: 'text-secondary-2' },
-        '2': { label: $t('verified'), class: 'text-secondary-1' },
+        1 : { label: $t('proposed'), class: 'text-secondary-2' },
+        2 : { label: $t('verified'), class: 'text-secondary-1' },
     };
     return statuses[status] || { label: $t('na'), class: 'text-neutral-2' };
 };

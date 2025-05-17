@@ -11,7 +11,6 @@ export const useInvitationStore = defineStore('invitation', {
 
     actions: {
         async sendInvitation(email, identityId, role) {
-            const toast = useToast();
             this.loading = true;
             this.error = null;
 

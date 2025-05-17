@@ -63,7 +63,7 @@ const form = useForm({
     pais_id: props.definicion?.pais_id || null,
     category_id: props.definicion?.category?.id || null,
     details: props.definicion?.details || '',
-    status: props.definicion?.status || '1',
+    status: props.definicion?.status || 1,
     value: props.definicion?.value || 0,
 });
 

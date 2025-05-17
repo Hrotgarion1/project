@@ -89,8 +89,8 @@ watch(perPage, (newPerPage) => {
 
 const formatStatus = (status) => {
     const statuses = {
-        '1': { label: $t('proposed'), class: 'text-secondary-2' },
-        '2': { label: $t('verified'), class: 'text-secondary-1' },
+        1 : { label: $t('proposed'), class: 'text-secondary-2' },
+        2 : { label: $t('verified'), class: 'text-secondary-1' },
     };
     return statuses[status] || { label: $t('unknown'), class: 'text-neutral-2' };
 };
@@ -221,14 +221,14 @@ const deleteDefinicion = async (record) => {
                             </div>
                             <div class="mt-3 flex gap-2 flex-wrap">
                                 <button
-                                    v-if="record.status !== '2'"
+                                    v-if="record.status !== 2 "
                                     @click="openForm(record)"
                                     class="text-main-1 dark:text-main-1 hover:underline text-sm"
                                 >
                                     {{ $t('edit') }}
                                 </button>
                                 <button
-                                    v-if="record.status === '1'"
+                                    v-if="record.status === 1 "
                                     @click="verifyDefinicion(record)"
                                     class="text-secondary-0 dark:text-secondary-0 hover:underline text-sm"
                                 >
@@ -297,7 +297,7 @@ const deleteDefinicion = async (record) => {
                                         {{ $t('edit') }}
                                     </button>
                                     <button
-                                        v-if="record.status === '1'"
+                                        v-if="record.status === 1 "
                                         @click="verifyDefinicion(record)"
                                         class="text-secondary-0 dark:text-secondary-0 hover:underline"
                                     >

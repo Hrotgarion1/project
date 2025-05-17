@@ -43,13 +43,15 @@ class AreaResumenController extends Controller
         $query = AreaRecord::selectRaw('
                 area_records.belonging_id,
                 area_records.pais_id,
+                belongings.name as belonging_name,
+                paises.name as pais_name,
                 SUM(CASE WHEN area_records.status = 1 THEN area_records.value ELSE 0 END) as total_propuestos,
                 SUM(CASE WHEN area_records.status = 2 THEN area_records.value ELSE 0 END) as total_verificados,
                 SUM(area_records.value) as totales
             ')
             ->where('area_records.user_id', $user->id)
             ->whereNull('area_records.deleted_at')
-            ->groupBy('area_records.belonging_id', 'area_records.pais_id')
+            ->groupBy('area_records.belonging_id', 'area_records.pais_id', 'belongings.name', 'paises.name')
             ->join('belongings', 'area_records.belonging_id', '=', 'belongings.id')
             ->leftJoin('paises', 'area_records.pais_id', '=', 'paises.id')
             ->with(['belonging' => function ($query) {
@@ -68,16 +70,16 @@ class AreaResumenController extends Controller
             Log::debug('Procesando item de resumen', [
                 'belonging_id' => $item->belonging_id,
                 'pais_id' => $item->pais_id,
-                'pais_name' => $item->pais?->name,
-                'belonging_name' => $item->belonging?->name,
+                'pais_name' => $item->pais_name ?? $item->pais?->name,
+                'belonging_name' => $item->belonging_name ?? $item->belonging?->name,
                 'total_propuestos' => $item->total_propuestos,
                 'total_verificados' => $item->total_verificados,
                 'totales' => $item->totales,
             ]);
             return [
                 'belonging_id' => $item->belonging_id,
-                'belonging_name' => $item->belonging?->name ?? 'Sin belonging',
-                'pais_name' => $item->pais?->name ?? 'Sin país',
+                'belonging_name' => $item->belonging_name ?? $item->belonging?->name ?? 'Sin belonging',
+                'pais_name' => $item->pais_name ?? $item->pais?->name ?? 'Sin país',
                 'total_propuestos' => (int) $item->total_propuestos,
                 'total_verificados' => (int) $item->total_verificados,
                 'totales' => (int) $item->totales,

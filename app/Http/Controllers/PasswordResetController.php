@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class PasswordResetController extends Controller
 {
@@ -23,16 +24,17 @@ class PasswordResetController extends Controller
 
         // Validar que el email y el token sean válidos
         if (!$email || !is_string($token)) {
-            return inertia('Auth/ResetPassword', [
+            return Inertia::render('Auth/ResetPassword', [
                 'error' => __('The password reset link is invalid.'),
                 'token' => null,
                 'email' => null,
             ]);
         }
 
-        return inertia('Auth/ResetPassword', [
+        return Inertia::render('Auth/ResetPassword', [
             'token' => $token,
             'email' => $email,
+            'adminReset' => true, // Indicador para personalizar la vista si es necesario
         ]);
     }
 
@@ -50,7 +52,7 @@ class PasswordResetController extends Controller
             'token' => 'required|string',
         ]);
 
-        // Intentar restablecer la contraseña usando Jetstream
+        // Intentar restablecer la contraseña
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {

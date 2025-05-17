@@ -97,8 +97,8 @@ class BelongingAreaController extends Controller
                 ->where('recordable_type', $recordableType)
                 ->whereNull('deleted_at')
                 ->selectRaw('
-                    SUM(CASE WHEN status = "1" THEN COALESCE(value, 0) ELSE 0 END) as total_propuestos,
-                    SUM(CASE WHEN status = "2" THEN COALESCE(value, 0) ELSE 0 END) as total_verificados,
+                    SUM(CASE WHEN status = \'1\' THEN COALESCE(value, 0) ELSE 0 END) as total_propuestos,
+                    SUM(CASE WHEN status = \'2\' THEN COALESCE(value, 0) ELSE 0 END) as total_verificados,
                     SUM(COALESCE(value, 0)) as total
                 ')
                 ->first();

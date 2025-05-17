@@ -18,8 +18,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     // Rutas placeholder para probar
     Route::get('/identity/{slug}/dashboard', [TypeAController::class, 'dashboard'])->name('type-a.dashboard');
-    Route::get('/type-b/dashboard/{slug}', [TypeBController::class, 'dashboard'])->name('type-b.dashboard');
-    Route::get('/type-c/dashboard/{slug}', [TypeCController::class, 'dashboard'])->name('type-c.dashboard');
+    Route::get('/identity/{slug}/dashboard', [TypeBController::class, 'dashboard'])->name('type-b.dashboard');
+    Route::get('/identity/{slug}/dashboard', [TypeCController::class, 'dashboard'])->name('type-c.dashboard');
 
     // Rutas para media
     Route::post('/media/{mediableType}/{slug}', [MediaController::class, 'store'])->name('media.store');

@@ -213,7 +213,7 @@ const toggleSortOrder = (column) => {
 };
 
 const formatStatus = (status) => {
-    const statuses = { '1': $t('proposed'), '2': $t('verified') };
+    const statuses = { 1 : $t('proposed'), 2 : $t('verified') };
     return statuses[status] || $t('unknown');
 };
 
@@ -307,7 +307,7 @@ onMounted(() => {
                             </Link>
                             <span
                                 class="text-sm font-medium"
-                                :class="definicion.status === '2' ? 'text-secondary-1 dark:text-secondary-1' : 'text-secondary-2 dark:text-secondary-2'"
+                                :class="definicion.status === 2 ? 'text-secondary-1 dark:text-secondary-1' : 'text-secondary-2 dark:text-secondary-2'"
                             >
                                 {{ formatStatus(definicion.status) }}
                             </span>
@@ -334,14 +334,14 @@ onMounted(() => {
                             </div>
                             <div class="mt-3 flex gap-2 flex-wrap">
                                 <button
-                                    v-if="definicion.status !== '2'"
+                                    v-if="definicion.status !== 2 "
                                     @click="openForm(definicion)"
                                     class="text-main-1 dark:text-main-1 hover:underline text-sm"
                                 >
                                     {{ $t('edit') }}
                                 </button>
                                 <button
-                                    v-if="definicion.status === '1'"
+                                    v-if="definicion.status === 1 "
                                     @click="verifyDefinicion(definicion.id)"
                                     class="text-secondary-0 dark:text-secondary-0 hover:underline text-sm"
                                 >
@@ -409,21 +409,21 @@ onMounted(() => {
                                 </td>
                                 <td class="p-3">
                                     <span
-                                        :class="definicion.status === '2' ? 'text-secondary-1 dark:text-secondary-1' : 'text-secondary-2 dark:text-secondary-2'"
+                                        :class="definicion.status === 2 ? 'text-secondary-1 dark:text-secondary-1' : 'text-secondary-2 dark:text-secondary-2'"
                                     >
                                         {{ formatStatus(definicion.status) }}
                                     </span>
                                 </td>
                                 <td class="p-3 flex gap-2 flex-wrap">
                                     <button
-                                        v-if="definicion.status !== '2'"
+                                        v-if="definicion.status !== 2 "
                                         @click="openForm(definicion)"
                                         class="text-main-1 dark:text-main-1 hover:underline"
                                     >
                                         {{ $t('edit') }}
                                     </button>
                                     <button
-                                        v-if="definicion.status === '1'"
+                                        v-if="definicion.status === 1 "
                                         @click="verifyDefinicion(definicion.id)"
                                         class="text-secondary-0 dark:text-secondary-0 hover:underline"
                                     >

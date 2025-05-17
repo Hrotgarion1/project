@@ -114,6 +114,10 @@ class AbstractAreaController extends Controller
             'record_status' => $latestRecord ? $latestRecord->status : null,
         ]);
 
+        if (!$latestRecord) {
+        return null; // O asignar status por defecto: 'status' => 1
+        }
+
         return [
             'id' => $definicion->id,
             'area_id' => $definicion->area_id,
@@ -290,7 +294,7 @@ class AbstractAreaController extends Controller
                 'user_id' => $user->id,
                 'belonging_id' => $validated['belonging_id'],
                 'pais_id' => $validated['pais_id'],
-                'status' => '1',
+                'status' => 1,
                 'value' => $validated['value'],
                 'puntuacion_1' => $validated['value'],
                 'puntuacion_2' => 0,
@@ -419,7 +423,7 @@ class AbstractAreaController extends Controller
 
         $latestRecord = $record->records->first();
 
-        if ($latestRecord && $latestRecord->status === '2') {
+        if ($latestRecord && $latestRecord->status === 2 ) {
             return redirect()->route("{$this->routePrefix}.index")->with('error', __('Cannot edit verified record'));
         }
 
@@ -462,7 +466,7 @@ class AbstractAreaController extends Controller
                 ->orderBy('updated_at', 'desc')
                 ->first();
 
-            if ($latestAreaRecord && $latestAreaRecord->status === '2') {
+            if ($latestAreaRecord && $latestAreaRecord->status === 2 ) {
                 return redirect()->route("{$this->routePrefix}.index")->with('error', __('cannot_edit_verified_record'));
             }
 
@@ -539,10 +543,10 @@ class AbstractAreaController extends Controller
                 'user_id' => $user->id,
                 'belonging_id' => $data['belonging_id'] ?? ($latestAreaRecord ? $latestAreaRecord->belonging_id : null),
                 'pais_id' => $data['pais_id'] ?? ($latestAreaRecord ? $latestAreaRecord->pais_id : null),
-                'status' => $latestAreaRecord ? $latestAreaRecord->status : '1',
+                'status' => $latestAreaRecord ? $latestAreaRecord->status : 1 ,
                 'value' => $data['value'],
-                'puntuacion_1' => ($latestAreaRecord && $latestAreaRecord->status === '1') ? $data['value'] : 0,
-                'puntuacion_2' => ($latestAreaRecord && $latestAreaRecord->status === '2') ? $data['value'] : 0,
+                'puntuacion_1' => ($latestAreaRecord && $latestAreaRecord->status === 1 ) ? $data['value'] : 0,
+                'puntuacion_2' => ($latestAreaRecord && $latestAreaRecord->status === 2 ) ? $data['value'] : 0,
                 'puntuacion_3' => 0,
             ];
 
@@ -588,12 +592,12 @@ class AbstractAreaController extends Controller
                 ->orderBy('updated_at', 'desc')
                 ->firstOrFail();
 
-            if ($areaRecord->status === '2') {
+            if ($areaRecord->status === 2 ) {
                 return redirect()->route("{$this->routePrefix}.index")->with('error', __('Record is already verified'));
             }
 
             $areaRecord->update([
-                'status' => '2',
+                'status' => 2 ,
                 'puntuacion_2' => $areaRecord->puntuacion_1,
                 'puntuacion_1' => 0,
                 'puntuacion_3' => 0,
@@ -649,6 +653,9 @@ class AbstractAreaController extends Controller
             ->get()
             ->map(function ($definicion) {
                 $latestRecord = $definicion->records->first();
+                if (!$latestRecord) {
+            return null; // Excluir definiciones sin AreaRecord
+            }
                 return [
                     'id' => $definicion->id,
                     'area_id' => $definicion->area_id,
@@ -671,15 +678,15 @@ class AbstractAreaController extends Controller
                     'pais' => $latestRecord ? $latestRecord->pais : null,
                     'category' => $definicion->category ?? null,
                 ];
-            });
+            })->filter()->values();
 
         $records = AreaRecord::where('recordable_type', $this->modelClass)
             ->where('user_id', $user->id)
             ->whereNull('deleted_at')
             ->get();
 
-        $totalPropuestos = $records->where('status', '1')->sum('puntuacion_1');
-        $totalVerificados = $records->where('status', '2')->sum('puntuacion_2');
+        $totalPropuestos = $records->where('status', 1 )->sum('puntuacion_1');
+        $totalVerificados = $records->where('status', 2 )->sum('puntuacion_2');
         $total = $totalPropuestos + $totalVerificados;
 
         return response()->json([

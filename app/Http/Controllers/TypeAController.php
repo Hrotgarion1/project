@@ -6,9 +6,12 @@ use App\Models\Identity;
 use App\Models\Media;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TypeAController extends Controller
 {
+    use AuthorizesRequests;
+    
     public function __construct()
     {
         $this->middleware('auth');

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AreaG;
 
-class AreaGController extends Controller
+class AreaGController extends AbstractAreaController
 {
     protected $modelClass = AreaG::class;
     protected $areaName = 'G';

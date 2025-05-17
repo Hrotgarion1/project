@@ -23,11 +23,12 @@ export const useAreaDefinicionStore = defineStore('areaDefinicion', {
             this.loading = true;
             this.error = null;
             try {
-                const response = await axios.get(`/area-${areaName.toLowerCase()}`, {
+                const response = await axios.get(window.route(`skyfall.area-${areaName.toLowerCase()}.index`), {
                     params: { page, per_page: this.areas[areaName]?.pagination.per_page || 10 },
                     headers: { Accept: 'application/json' },
                 });
                 console.debug('Respuesta de fetchAreaData para área:', areaName, response.data);
+                console.debug('Statuses:', response.data.definiciones.data.map(d => ({ id: d.id, status: d.status })));
                 if (!response.data.definiciones?.data || !Array.isArray(response.data.definiciones.data)) {
                     console.error('Respuesta inválida, no se encontraron definiciones válidas:', response.data);
                     this.error = `No se encontraron definiciones válidas para área ${areaName}`;
@@ -47,7 +48,12 @@ export const useAreaDefinicionStore = defineStore('areaDefinicion', {
                 this.error = null;
             } catch (error) {
                 console.error(`Error al obtener datos para área ${areaName}:`, error.response?.data || error.message);
-                this.error = `Error al cargar datos para área ${areaName}: ${error.message}`;
+                if (error.response?.status === 404) {
+                    this.error = `Ruta no encontrada para área ${areaName}. Por favor, verifica la configuración de rutas.`;
+                } else {
+                    this.error = `Error al cargar datos para área ${areaName}: ${error.message}`;
+                }
+                toast.error(this.error);
                 throw error;
             } finally {
                 this.loading = false;
@@ -56,13 +62,11 @@ export const useAreaDefinicionStore = defineStore('areaDefinicion', {
         async deleteDefinicion(id, areaName) {
             this.loading = true;
             this.error = null;
-            const toast = useToast();
-
             try {
                 const routeName = `skyfall.area-${areaName.toLowerCase()}.destroy`;
                 console.debug('Eliminando definición:', { id, areaName, routeName });
 
-                await router.delete(route(routeName, id), {
+                await router.delete(window.route(routeName, id), {
                     preserveState: true,
                     preserveScroll: true,
                     onSuccess: async () => {
@@ -86,18 +90,21 @@ export const useAreaDefinicionStore = defineStore('areaDefinicion', {
         async verifyDefinicion(id, areaName) {
             this.loading = true;
             this.error = null;
-            const toast = useToast();
-
             try {
                 const routeName = `skyfall.area-${areaName.toLowerCase()}.verify`;
                 console.debug('Verificando definición:', { id, areaName, routeName });
 
-                await router.post(route(routeName, id), { status: '2' }, {
+                await router.post(window.route(routeName, id), { status: 2 }, {
                     preserveState: true,
                     preserveScroll: true,
                     onSuccess: async () => {
-                        await this.fetchAreaData(areaName, this.areas[areaName]?.pagination.current_page || 1);
-                        toast.success('Registro verificado correctamente');
+                        await router.reload({
+                            preserveState: true,
+                            preserveScroll: true,
+                            onSuccess: () => {
+                                console.debug('Datos recargados para área:', areaName);
+                            },
+                        });
                     },
                     onError: (errors) => {
                         this.error = Object.values(errors).join(', ') || 'Error al verificar registro';

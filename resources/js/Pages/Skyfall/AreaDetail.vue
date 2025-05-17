@@ -24,7 +24,7 @@ const props = defineProps({
     },
     definicion: {
         type: Object,
-        required: true, // Corregido de Console a required
+        required: true,
     },
     paises: {
         type: Array,
@@ -63,7 +63,7 @@ const formatDate = (date) => {
 };
 
 const formatStatus = (status) => {
-    const statuses = { '1': $t('proposed'), '2': $t('verified') };
+    const statuses = { 1 : $t('proposed'), 2 : $t('verified') };
     return statuses[status] || $t('na');
 };
 
@@ -136,7 +136,7 @@ const verifyDefinicion = async () => {
                         <p><strong class="text-neutral-1 dark:text-neutral-0">{{ $t('value') }}:</strong> <span class="text-main-1 dark:text-main-1">{{ formatValue(definicion.value) }}</span></p>
                     </div>
                     <div>
-                        <p><strong class="text-neutral-1 dark:text-neutral-0">{{ $t('status') }}:</strong> <span :class="definicion.status === '2' ? 'text-secondary-1' : 'text-secondary-2'">{{ formatStatus(definicion.status) }}</span></p>
+                        <p><strong class="text-neutral-1 dark:text-neutral-0">{{ $t('status') }}:</strong> <span :class="definicion.status === 2 ? 'text-secondary-1' : 'text-secondary-2'">{{ formatStatus(definicion.status) }}</span></p>
                     </div>
                     <div>
                         <p><strong class="text-neutral-1 dark:text-neutral-0">{{ $t('daily_hours') }}:</strong> {{ definicion.schedule || $t('na') }}</p>
@@ -188,14 +188,14 @@ const verifyDefinicion = async () => {
                 </div>
                 <div class="flex justify-end gap-4 mt-6">
                     <Link
-                        v-if="definicion.status !== '2'"
+                        v-if="definicion.status !== 2 "
                         :href="route(`skyfall.area-${area_name.toLowerCase()}.edit`, definicion.id)"
                         class="px-4 py-2 bg-main-1 dark:bg-main-1 text-neutral-0 dark:text-neutral-0 rounded-lg hover:bg-main-0 dark:hover:bg-main-0 transition-colors"
                     >
                         {{ $t('edit') }}
                     </Link>
                     <button
-                        v-if="definicion.status === '1'"
+                        v-if="definicion.status === 1 "
                         @click="verifyDefinicion"
                         class="px-4 py-2 bg-secondary-0 dark:bg-secondary-0 text-neutral-0 dark:text-neutral-0 rounded-lg hover:bg-secondary-1 dark:hover:bg-secondary-1 transition-colors"
                     >

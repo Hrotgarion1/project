@@ -29,6 +29,7 @@ class AreaRecord extends Model
         'puntuacion_1' => 'integer',
         'puntuacion_2' => 'integer',
         'value' => 'integer',
+        'status' => 'integer',
     ];
 
     public function recordable()
